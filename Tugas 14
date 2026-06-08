@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- === SEO ON-PAGE BASIC === -->
+    <title>EduPortal - Dashboard Akademik & Manajemen Proyek Mahasiswa</title>
+    <meta name="description" content="EduPortal adalah platform akademik terintegrasi untuk mahasiswa memantau nilai, jadwal kuliah, IPK, dan manajemen kolaborasi proyek secara real-time.">
+    <meta name="keywords" content="portal akademik, dashboard mahasiswa, manajemen proyek mahasiswa, nilai IPK, jadwal kuliah, EduPortal">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="EduPortal Team">
+    <link rel="canonical" href="https://eduportal.example.com/dashboard">
+
+    <!-- === OPEN GRAPH (Meta Sosial Facebook, WhatsApp, LinkedIn) === -->
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="EduPortal - Dashboard Akademik & Kolaborasi Mahasiswa">
+    <meta property="og:description" content="Kelola matakuliah, pantau nilai IPK, dan kolaborasikan proyek belajarmu dalam satu platform interaktif.">
+    <meta property="og:url" content="https://eduportal.example.com/dashboard">
+    <meta property="og:site_name" content="EduPortal Indonesia">
+    <meta property="og:image" content="https://eduportal.example.com/assets/img/og-dashboard-preview.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+
+    <!-- === TWITTER CARDS === -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="EduPortal - Dashboard Akademik Mahasiswa">
+    <meta name="twitter:description" content="Platform akademik modern untuk efisiensi belajar, pelacakan IPK, dan manajemen tugas kelompok secara langsung.">
+    <meta name="twitter:image" content="https://eduportal.example.com/assets/img/og-dashboard-preview.jpg">
+
+    <!-- === SCHEMA.ORG STRUCTURAL DATA (JSON-LD) === -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "EduPortal",
+      "url": "https://eduportal.example.com",
+      "description": "Portal akademik interaktif untuk manajemen perkuliahan, IPK, dan proyek mahasiswa.",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires HTML5 compatible browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "IDR"
+      }
+    }
+    </script>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS (Dipertahankan untuk Layout Utama) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .zebra-table tr:nth-child(even) { background-color: #f8fafc; }
+        
+        /* Penyesuaian kecil agar Tailwind dan Bootstrap tidak bentrok di list */
+        .breadcrumb { margin-bottom: 0; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white border-r border-slate-200 hidden lg:flex flex-col sticky top-0 h-screen">
+            <div class="p-8">
+                <div class="flex items-center gap-3 text-indigo-600 mb-10">
+                    <div class="bg-indigo-600 p-2 rounded-xl text-white">
+                        <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+                    </div>
+                    <span class="text-xl font-bold tracking-tight text-slate-800">EduPortal</span>
+                </div>
+
+                <nav class="space-y-2" aria-label="Navigasi Utama">
+                    <a href="#" class="flex items-center gap-4 px-4 py-3 rounded-xl text-sm font-semibold bg-indigo-50 text-indigo-600 shadow-sm">
+                        <i class="fas fa-columns w-5" aria-hidden="true"></i> Dashboard
+                    </a>
+                    <a href="#" class="flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-slate-500 hover:bg-slate-50 hover:text-slate-800 transition-all">
+                        <div class="flex items-center gap-4">
+                            <i class="fas fa-book w-5" aria-hidden="true"></i> Mata Kuliah
+                        </div>
+                        <!-- 1. BOOTSTRAP COMPONENT: Badge -->
+                        <span class="badge rounded-pill text-bg-danger">3 Baru</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-4 px-4 py-3 rounded-xl text-sm font-semibold text-slate-500 hover:bg-slate-50 hover:text-slate-800 transition-all">
+                        <i class="fas fa-calendar-alt w-5" aria-hidden="true"></i> Jadwal
+                    </a>
+                    <a href="#" class="flex items-center gap-4 px-4 py-3 rounded-xl text-sm font-semibold text-slate-500 hover:bg-slate-50 hover:text-slate-800 transition-all">
+                        <i class="fas fa-user-graduate w-5" aria-hidden="true"></i> Nilai & IPK
+                    </a>
+                </nav>
+            </div>
+            
+            <div class="mt-auto p-6 border-t border-slate-100">
+                <div class="bg-indigo-600 rounded-2xl p-4 text-white">
+                    <p class="text-xs opacity-80 mb-1 font-medium">Semester 4</p>
+                    <p class="text-lg font-bold mb-3">IPK: 3.85</p>
+                    <div class="w-full bg-indigo-400 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-white w-[85%] h-full" style="width: 85%;"></div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto">
+            <!-- Header -->
+            <header class="h-20 bg-white border-b border-slate-200 px-8 flex items-center justify-between sticky top-0 z-10">
+                <div class="relative w-96 hidden md:block">
+                    <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm" aria-hidden="true"></i>
+                    <input type="text" placeholder="Cari materi..." class="w-full pl-11 pr-4 py-2.5 bg-slate-100 border-none rounded-xl text-sm outline-none" aria-label="Cari materi kuliah">
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <div class="text-right">
+                        <p class="text-sm font-bold text-slate-800">Rizky Ramadhan</p>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase">2201040056</p>
+                    </div>
+                    <div class="w-10 h-10 rounded-full bg-indigo-100 border-2 border-indigo-500 flex items-center justify-center text-indigo-700 font-bold">
+                        RR
+                    </div>
+                </div>
+            </header>
+
+            <div class="p-8 space-y-6">
+                <!-- SEO Heading 1 (Disembunyikan secara visual tetapi terbaca oleh mesin pencari/screen reader untuk struktur SEO yang tepat) -->
+                <h1 class="sr-only">Dashboard Akademik Mahasiswa - EduPortal</h1>
+
+                <!-- 2. BOOTSTRAP COMPONENT: Breadcrumb -->
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#" class="text-indigo-600 text-decoration-none">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#" class="text-indigo-600 text-decoration-none">Akademik</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                    </ol>
+                </nav>
+
+                <!-- Banner -->
+                <section class="bg-indigo-600 rounded-[2.5rem] p-10 text-white relative overflow-hidden shadow-2xl shadow-indigo-200">
+                    <div class="relative z-10">
+                        <h2 class="text-4xl font-extrabold mb-3">Selamat Pagi, Rizky! 👋</h2>
+                        <p class="text-indigo-100 max-w-lg text-lg">Anda memiliki 3 jadwal perkuliahan hari ini. Pastikan semua tugas sudah terunggah.</p>
+                    </div>
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-20 -mt-20"></div>
+                </section>
+
+                <!-- 3. BOOTSTRAP COMPONENT: Alert -->
+                <div class="alert alert-warning alert-dismissible fade show shadow-sm border-0" role="alert">
+                    <strong>Pemberitahuan Sistem:</strong> Server akan mengalami pemeliharaan pada pukul 23:00 WIB. Mohon simpan pekerjaan Anda.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                <!-- 4. BOOTSTRAP COMPONENT: Cards -->
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm rounded-3">
+                            <div class="card-body">
+                                <h3 class="card-subtitle mb-2 text-muted text-uppercase text-xs font-bold">Total SKS Diambil</h3>
+                                <p class="card-title font-extrabold text-3xl text-slate-800 m-0">24 SKS</p>
+                                <p class="card-text text-sm text-success mt-2"><i class="fas fa-arrow-up" aria-hidden="true"></i> +2 dari semester lalu</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm rounded-3">
+                            <div class="card-body">
+                                <h3 class="card-subtitle mb-2 text-muted text-uppercase text-xs font-bold">Progres Tugas Akhir</h3>
+                                <p class="card-title font-extrabold text-3xl text-slate-800 m-0">65%</p>
+                                <!-- 5. BOOTSTRAP COMPONENT: Progress Bar -->
+                                <div class="progress mt-3" style="height: 10px;" role="progressbar" aria-label="Progress Tugas" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-indigo-500" style="width: 65%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm rounded-3 bg-slate-800 text-white">
+                            <div class="card-body">
+                                <h3 class="card-subtitle mb-2 text-slate-400 text-uppercase text-xs font-bold">Tugas Mendatang</h3>
+                                <p class="card-title font-extrabold text-3xl m-0">4 Tugas</p>
+                                <p class="card-text text-sm text-slate-300 mt-2">Harus dikumpulkan minggu ini</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Table Section -->
+                <section class="space-y-6 mt-8" aria-labelledby="section-project-title">
+                    <div class="flex items-center justify-between">
+                        <h2 id="section-project-title" class="text-2xl font-black text-slate-800 uppercase tracking-tight">Manajemen Proyek Mahasiswa</h2>
+                        <div class="flex gap-2">
+                            <!-- 6. BOOTSTRAP COMPONENT: Modal Trigger Button -->
+                            <button type="button" class="btn btn-primary bg-indigo-600 border-0" data-bs-toggle="modal" data-bs-target="#projectModal">
+                                <i class="fas fa-plus" aria-hidden="true"></i> Tambah Proyek
+                            </button>
+
+                            <!-- 7. BOOTSTRAP COMPONENT: Dropdown -->
+                            <div class="dropdown">
+                                <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-download" aria-hidden="true"></i> Export Data
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end shadow">
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-file-pdf text-danger w-5" aria-hidden="true"></i> Unduh PDF</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-file-excel text-success w-5" aria-hidden="true"></i> Unduh Excel</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-print text-slate-600 w-5" aria-hidden="true"></i> Cetak Langsung</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-3xl shadow-xl shadow-slate-200 border border-slate-200 overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse zebra-table mb-0">
+                                <thead>
+                                    <tr class="bg-slate-800 text-slate-200 text-[11px] uppercase tracking-widest font-black">
+                                        <th class="px-6 py-5">Informasi Proyek</th>
+                                        <th class="px-6 py-5">Kategori</th>
+                                        <th class="px-6 py-5">Status Progres</th>
+                                        <th class="px-6 py-5">Penanggung Jawab</th>
+                                        <th class="px-6 py-5 text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b border-slate-100 hover:bg-slate-50 transition-all">
+                                        <td class="px-6 py-4">
+                                            <p class="text-sm font-bold text-slate-800">Redesign Landing Page</p>
+                                            <p class="text-[10px] text-slate-400 font-mono">UID-101X</p>
+                                        </td>
+                                        <td class="px-6 py-4 text-sm text-slate-600">UI/UX Design</td>
+                                        <td class="px-6 py-4">
+                                            <span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-[10px] font-black uppercase border border-emerald-200">
+                                                <i class="fas fa-check-circle mr-1" aria-hidden="true"></i> Selesai
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 flex items-center gap-3 text-sm text-slate-700">
+                                            <div class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-[10px] font-bold">RR</div>
+                                            Rizky Ramadhan
+                                        </td>
+                                        <td class="px-6 py-4 text-center">
+                                            <!-- 8. BOOTSTRAP COMPONENT: Tooltip -->
+                                            <button class="btn btn-sm btn-light text-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Proyek" aria-label="Edit Proyek">
+                                                <i class="fas fa-edit" aria-hidden="true"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-light text-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Hapus Proyek" aria-label="Hapus Proyek">
+                                                <i class="fas fa-trash" aria-hidden="true"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-b border-slate-100 hover:bg-slate-50 transition-all">
+                                        <td class="px-6 py-4">
+                                            <p class="text-sm font-bold text-slate-800">Integrasi API Gateway</p>
+                                            <p class="text-[10px] text-slate-400 font-mono">UID-102X</p>
+                                        </td>
+                                        <td class="px-6 py-4 text-sm text-slate-600">Backend</td>
+                                        <td class="px-6 py-4">
+                                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-[10px] font-black uppercase border border-blue-200">
+                                                <i class="fas fa-clock mr-1" aria-hidden="true"></i> Proses
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 flex items-center gap-3 text-sm text-slate-700">
+                                            <div class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-[10px] font-bold">AN</div>
+                                            Anisa Bahar
+                                        </td>
+                                        <td class="px-6 py-4 text-center">
+                                            <button class="btn btn-sm btn-light text-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Proyek" aria-label="Edit Proyek">
+                                                <i class="fas fa-edit" aria-hidden="true"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-light text-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Hapus Proyek" aria-label="Hapus Proyek">
+                                                <i class="fas fa-trash" aria-hidden="true"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- 9. BOOTSTRAP COMPONENT: Pagination (Di dalam pembungkus tabel putih) -->
+                        <div class="px-6 py-3 bg-white border-t border-slate-100 d-flex justify-content-end">
+                            <nav aria-label="Navigasi halaman data proyek">
+                                <ul class="pagination pagination-sm mb-0">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" aria-label="Halaman Sebelumnya">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link" href="#" aria-current="page">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Halaman Selanjutnya">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <div class="px-6 py-4 bg-slate-800 flex justify-between items-center">
+                            <span class="text-[10px] text-slate-400 font-bold tracking-widest uppercase">Sistem Monitoring Aktif</span>
+                            <div class="flex items-center gap-2">
+                                <!-- 10. BOOTSTRAP COMPONENT: Spinner -->
+                                <div class="spinner-grow spinner-grow-sm text-success" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <span class="text-[10px] text-slate-200 font-bold uppercase tracking-widest">Live Update</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- 6. BOOTSTRAP COMPONENT: Modal HTML Content -->
+    <div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-3">
+                <div class="modal-header border-bottom border-slate-100">
+                    <h2 class="modal-title fs-5 font-bold text-slate-800" id="projectModalLabel">Buat Proyek Baru</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="projectName" class="form-label text-sm font-semibold text-slate-700">Nama Proyek</label>
+                            <input type="text" class="form-control" id="projectName" placeholder="Masukkan nama proyek">
+                        </div>
+                        <div class="mb-3">
+                            <label for="projectCategory" class="form-label text-sm font-semibold text-slate-700">Kategori</label>
+                            <select class="form-select" id="projectCategory">
+                                <option selected>Pilih kategori...</option>
+                                <option value="1">UI/UX Design</option>
+                                <option value="2">Backend</option>
+                                <option value="3">Frontend</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-top border-slate-100">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary bg-indigo-600 border-0">Simpan Proyek</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle with Popper (Diperlukan untuk Modal, Dropdown, dan Tooltips) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Script untuk menginisialisasi Tooltip Bootstrap -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+        });
+    </script>
+</body>
+</html>
